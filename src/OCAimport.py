@@ -230,7 +230,9 @@ class OCAImport():
                 """
                 # When importing T2D drawings, there is no alpha because it uses RGBM (it treats white as transparent)
                 # Thus mult would de better, except for BG, in that case...
-                if k > 1 and oca["originApp"] == "Tahoma2D":
+                if k <= 1:
+                    continue
+                if oca["originApp"] == "Tahoma2D":
                     # v.ApplyMode = self.convertBlendingModeKritaToFusion("multiply")
                     composition.Execute(v.Name + '.ApplyMode = "Multiply"')
                 else:
